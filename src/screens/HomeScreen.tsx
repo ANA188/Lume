@@ -1,17 +1,44 @@
 import React from 'react';
-import { View, Text, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  SafeAreaView,
+  ScrollView
+} from 'react-native';
+import SearchBar from '../components/SearchBar';
+import BookCard from '../components/BookCard';
+
+
+const BOOKS = [
+  { id: '1', title: 'O Silmarillion', author: 'J.R.R. Tolkien' },
+  { id: '2', title: '1984', author: 'George Orwell' },
+  { id: '3', title: 'Clean Code', author: 'Robert C. Martin' },
+  { id: '4', title: 'Dom Casmurro', author: 'Machado de Assis' },
+  { id: '5', title: 'Sapiens', author: 'Yuval Noah Harari' },
+];
 
 const HomeScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView contentContainerStyle={styles.content}>
-        <Text style={styles.title}>Bem-vindo ao Lume</Text>
-        <Text style={styles.subtitle}>Sua biblioteca mobile inspirada no Anna's Archive</Text>
 
-        {/* Futuro conteúdo da Home aqui */}
-        <View style={styles.placeholderCard}>
-          <Text style={styles.placeholderText}>Destaques e buscas aparecerão aqui.</Text>
-        </View>
+      <View style={styles.header}>
+        <Text style={styles.title}>Lume</Text>
+        <SearchBar onSearch={(text) => console.log('Buscando:', text)} />
+      </View>
+
+
+      <ScrollView contentContainerStyle={styles.listContent}>
+        <Text style={styles.sectionLabel}>Recentemente adicionados</Text>
+
+        {BOOKS.map((book) => (
+          <BookCard
+            key={book.id}
+            title={book.title}
+            author={book.author}
+            onPress={() => alert(`Clicou em: ${book.title}`)}
+          />
+        ))}
       </ScrollView>
     </SafeAreaView>
   );
@@ -22,36 +49,26 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-  content: {
+  header: {
     padding: 20,
-    alignItems: 'center',
+    backgroundColor: '#fff',
   },
   title: {
-    fontSize: 28,
+    fontSize: 32,
     fontWeight: 'bold',
     color: '#333',
-    marginTop: 20,
+    marginBottom: 10,
   },
-  subtitle: {
-    fontSize: 16,
-    color: '#666',
-    textAlign: 'center',
-    marginTop: 10,
+  listContent: {
+    paddingHorizontal: 20,
+    paddingBottom: 20,
   },
-  placeholderCard: {
-    width: '100%',
-    height: 200,
-    backgroundColor: '#f0f0f0',
-    borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 30,
-    borderStyle: 'dashed',
-    borderWidth: 1,
-    borderColor: '#ccc',
-  },
-  placeholderText: {
-    color: '#999',
+  sectionLabel: {
+    fontSize: 14,
+    color: '#888',
+    marginBottom: 15,
+    textTransform: 'uppercase',
+    letterSpacing: 1,
   },
 });
 
