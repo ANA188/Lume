@@ -28,7 +28,7 @@ export default function Login() {
             <Input rotulo="E-mail" placeholder="Digite seu e-mail" keyboardType="email-address" />
             <Input rotulo="Senha" placeholder="Digite sua senha" ehSenha />
 
-            <TouchableOpacity style={styles.botaoEsqueceuSenha}>
+            <TouchableOpacity style={styles.botaoEsqueceuSenha} onPress={() => navigation.navigate('Recovery')}>
               <Text style={styles.textoEsqueceuSenha}>Esqueceu sua senha?</Text>
             </TouchableOpacity>
 
