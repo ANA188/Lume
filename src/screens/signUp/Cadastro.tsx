@@ -1,10 +1,13 @@
 import React from "react";
 import { View, Text, KeyboardAvoidingView, Platform, ScrollView } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { NavProps } from "../../Navigation/Types";
 import { styles } from "./Cadastro.styles";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
 
 export default function Cadastro() {
+const navigation = useNavigation<NavProps>();
   return (
     <View style={styles.conteiner}>
       <KeyboardAvoidingView 
@@ -54,7 +57,7 @@ export default function Cadastro() {
             />
 
             <View style={{ marginTop: 20 }}>
-              <Button titulo="CADASTRAR" />
+              <Button titulo="CADASTRAR" onPress={() => navigation.navigate('Home')} />
             </View>
           </View>
         </ScrollView>

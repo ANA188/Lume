@@ -1,10 +1,14 @@
 import React from "react";
 import { View, Text, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { NavProps } from "../../Navigation/Types";
 import { styles } from "./Login.styles";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
 
 export default function Login() {
+ const navigation = useNavigation<NavProps>();
+
   return (
     <View style={styles.conteiner}>
       <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === "ios" ? "padding" : "height"}>
@@ -28,7 +32,7 @@ export default function Login() {
               <Text style={styles.textoEsqueceuSenha}>Esqueceu sua senha?</Text>
             </TouchableOpacity>
 
-            <Button titulo="ENTRAR" />
+            <Button titulo="ENTRAR" onPress={() => navigation.navigate('Home')} />
 
             <View style={styles.linhaDivisorConteiner}>
               <View style={styles.linhaDivisor} />
@@ -36,7 +40,7 @@ export default function Login() {
               <View style={styles.linhaDivisor} />
             </View>
 
-            <TouchableOpacity style={styles.botaoCadastro}>
+            <TouchableOpacity style={styles.botaoCadastro} onPress={() => navigation.navigate('Cadastro')}>
               <Text style={styles.textoCadastro}>
                 Não tem uma conta?{" "}
                 <Text style={styles.linkCadastro}>Cadastre-se</Text>

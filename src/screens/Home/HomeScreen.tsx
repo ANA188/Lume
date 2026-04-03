@@ -6,8 +6,8 @@ import {
   SafeAreaView,
   ScrollView
 } from 'react-native';
-import SearchBar from '../components/SearchBar';
-import BookCard from '../components/BookCard';
+import SearchBar from '../../components/SearchBar';
+import BookCard from '../../components/BookCard';
 
 
 const BOOKS = [
